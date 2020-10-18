@@ -1,0 +1,32 @@
+prior requirement: 
+
+import {FormsModule } from '@angular/forms';// for forms
+import { HttpClientModule} from '@angular/common/http';// for getting crud services from back-end(nodejs).also it returns observable which is asynchronus functionality
+ 
+
+Todolist component: ( http://localhost:4200/ by default )
+
+todolistapp.component.html (uses material css for front end ) = collects data in form (uses ngform ngsubmit ngmodel), uses two input one for _id( which is created by mongoose by default) and other to get task data, both the inputs are two-way binded ( reflects data as we type ), note: intialize input to null or"" to avoid error. 
+
+todolistapp.component.ts= is used to get services from service class( which fets and pushes data to backend) and does functions like intilaize input to null, refreshs 
+data, ngonit(): gets run after todolist cmoponent is loaded,  constructor(public taskservice:TaskserviceService){} is generally used to intialize object.
+
+Model:
+
+contains two fields= _id is required in this as _id is generated as default in monogodb.aslo _id is used for finding data to edit and delete, task is the only actual field used for storeing and editing data.
+
+
+Service:
+
+uses selectedtask: Model; // for temporarily holding data
+   tasks:Model[]; // for listing out all saved data , Model is type of data format
+
+here we use http module to fetch data from backend( nodejs ) 
+
+readonly baseURL = 'http://localhost:3000/tasks'; // is used to tell where to get backend services
+
+putdata(task:Model){
+    
+   return this.http.post(this.baseURL, task); //post is one of the services( get,post,put,delete) offered by backend for each route ( in this case is tasks i.e: http://localhost:3000/tasks
+   
+  }

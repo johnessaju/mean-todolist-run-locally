@@ -1,0 +1,44 @@
+#Prior requirement:
+
+"dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25",
+    "nodemon": "^2.0.4"
+  }
+
+1.npm init
+2. npm install 
+   "body-parser": "^1.19.0", // to extract the entire body portion of an incoming request stream and expose it on req.body 
+    "cors": "^2.8.5", // to allow request from other orgin particularly from http://localhost:4200/
+    "express": "^4.17.1", // is used start server at port (port of your choice)
+    "mongoose": "^5.9.25", // to connect to database i.e mongodb
+    "nodemon": "^2.0.4" // is used for auto restarting server when a change is made to content
+
+3.create index.js  ( http://localhost:3000/tasks)
+
+#Index.js:
+
+here server is created using express. also used are cors, body-parser. here mongoose is connected to database by calling const mongoose= require('./db');
+here router is used to direct request based on http service
+
+#Db.js
+
+is used to connect to database( mongodb) . this can also be configured using config file
+
+#Taskdb.js:
+
+is used to mention model of data i.e provide model for collection(table) in database(mongodb)
+
+var task= mongoose.model('task',{
+    task:{type:String}
+});
+
+Note: does not require as monodb create it automatically
+
+#Taskcontroller.js:
+
+uses router in express to route request to different http service (get,post,put,delete) 
+
+
